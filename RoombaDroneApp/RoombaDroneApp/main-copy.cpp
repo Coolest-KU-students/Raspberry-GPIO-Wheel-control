@@ -9,6 +9,8 @@ using namespace std;
 #define	right1Pin	21
 #define	right2Pin	22
 
+
+#pragma region classes
 class Port {
 private:
 	int portNumber;
@@ -32,8 +34,16 @@ public:
 		return high;
 	}
 
+
+	void ChangeMode(bool isOut) {
+		if (out == isOut) return;
+	
+		out = isOut;
+		TurnOn();
+	}
+
 	void TurnOn() {
-		pinMode(portNumber, OUTPUT);
+		pinMode(portNumber, out? OUTPUT : INPUT);
 
 		isOn = true;
 		cout << "DEBUG: " << "gpio mode " << portNumber << " " << (out ? "out" : "in") << endl;
@@ -44,16 +54,27 @@ public:
 	}
 
 	void SetHigh(bool high) {
-		if (high) {
-			digitalWrite(portNumber, HIGH);
-		}
-		else {
-			digitalWrite(portNumber, LOW);
-		}
+		digitalWrite(portNumber, high? HIGH : LOW);
 
 		this->high = high;
 
 		cout << "DEBUG: " << "gpio write " << portNumber << " " << (high ? "1" : "0") << endl;
+	}
+
+	long PulseIn(){
+		if (!out) 
+			return pulseIn(portNumber, !high);
+	
+		cout << "Port " << portNumber << "is set as out, but trying to read pulse from it. returning 0";
+		return 0;
+	}
+
+	int AnalogRead() {
+		if (!out)
+			return analogRead(pin);
+
+		cout << "Port " << portNumber << "is set as out, but trying to read analog data from it. returning 0";
+		return 0;
 	}
 };
 
@@ -153,6 +174,8 @@ public:
 
 void GetInput(WheelControl* wheelControl);
 
+#pragma endregion this is where all the classes lie
+
 int notMain()
 //int main(void)
 {
@@ -209,3 +232,71 @@ void GetInput(WheelControl* wheelControl) {
 
 	cout << "Unrecognized. Firetruck." << endl;
 }
+
+class DistanceMeasurer {
+protected:
+	Port* port;
+
+	DistanceMeasurer(Port* port) {
+		this->port = port;
+	}
+public:
+	virtual float GetDistance() {
+		cout << "GetDistance was not overriden for port " << port;
+	}
+};
+
+class UltrasoundSensor : DistanceMeasurer {
+public:
+	UltrasoundSensor(Port* port) : DistanceMeasurer(port){}
+
+	float GetDistance() {
+		port->ChangeMode(true);
+		port->ToggleHigh();
+		delayMicroseconds(10);
+		port->ToggleHigh();
+		port->ChangeMode(false);
+		long duration = port->PulseIn();
+		float distance = duration / 58.0; //sound speed in cm/s
+
+		return distance; //cm
+	}
+};
+
+class IRSensor : DistanceMeasurer {
+public:
+	IRSensor(Port* port) : DistanceMeasurer(port) {}
+
+	float GetDistance() {
+		int val = port->AnalogRead();
+		float voltage = val * (5.0 / 1023.0);
+		float distance = 13.0 * pow(voltage, -1.10); //found these somewhere, might need to adjust
+		return distance; //cm
+	}
+}; 
+
+class DistanceMatrix {
+private:
+	DistanceMeasurer* measurers;
+	int totalSize;
+
+public:
+	DistanceMatrix(DistanceMeasurer measurers[]) {
+	  this->measurers = measurers;
+	  totalSize = sizeof(measurers);
+	}
+
+	int count() {
+		return totalSize;
+	}
+
+	float* getDistances() {
+		float* distances = new float[totalSize];
+
+		for (int i = 0; i < totalSize; i++) {
+			distances[i] = measurers[i].GetDistance();
+		}
+
+		return distances;
+	}
+};

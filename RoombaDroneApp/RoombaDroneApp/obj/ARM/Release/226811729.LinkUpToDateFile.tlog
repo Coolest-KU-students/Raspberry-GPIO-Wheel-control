@@ -1,0 +1,1 @@
+g++ -o "/home/admin/projects/RoombaDroneApp/bin/ARM/Release/RoombaDroneApp.out" -Wl,--no-undefined -Wl,-z,relro -Wl,-z,now -Wl,-z,noexecstack /home/admin/projects/RoombaDroneApp/obj/ARM/Release/main.o -lwiringPi

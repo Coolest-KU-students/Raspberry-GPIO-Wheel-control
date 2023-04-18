@@ -1,16 +1,31 @@
 ﻿  Validating sources
-  Copying sources remotely to '192.168.64.157'
+  Copying sources remotely to '192.168.87.157'
   Validating architecture
   Validating architecture
   Starting remote build
   Compiling sources:
   main.cpp
+C:\Users\valdas\Desktop\Personal\DI\Dronas\RoombaDroneApp\RoombaDroneApp\main.cpp(272,109): warning : unknown escape sequence: '\9'
+C:\Users\valdas\Desktop\Personal\DI\Dronas\RoombaDroneApp\RoombaDroneApp\main.cpp(377,21): warning : conversion from ‘float’ to ‘int’ may change value [-Wfloat-conversion]
+C:\Users\valdas\Desktop\Personal\DI\Dronas\RoombaDroneApp\RoombaDroneApp\main.cpp(377,21): warning :   377 |      int deg = round(nodes[pos].angle_z_q14 * 90.f / (1 << 14));
+C:\Users\valdas\Desktop\Personal\DI\Dronas\RoombaDroneApp\RoombaDroneApp\main.cpp(377,21): warning :       |                ~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\valdas\Desktop\Personal\DI\Dronas\RoombaDroneApp\RoombaDroneApp\main.cpp(381,35): warning : conversion from ‘_u32’ {aka ‘unsigned int’} to ‘float’ may change value [-Wconversion]
+C:\Users\valdas\Desktop\Personal\DI\Dronas\RoombaDroneApp\RoombaDroneApp\main.cpp(381,35): warning :   381 |      int dist = round((nodes[pos].dist_mm_q2 / 4.0f)) - 50; // -5 cm, because it includes the body size in detection
+C:\Users\valdas\Desktop\Personal\DI\Dronas\RoombaDroneApp\RoombaDroneApp\main.cpp(381,35): warning :       |                        ~~~~~~~~~~~^~~~~~~~~~
+C:\Users\valdas\Desktop\Personal\DI\Dronas\RoombaDroneApp\RoombaDroneApp\main.cpp(381,55): warning : conversion from ‘float’ to ‘int’ may change value [-Wfloat-conversion]
+C:\Users\valdas\Desktop\Personal\DI\Dronas\RoombaDroneApp\RoombaDroneApp\main.cpp(381,55): warning :   381 |      int dist = round((nodes[pos].dist_mm_q2 / 4.0f)) - 50; // -5 cm, because it includes the body size in detection
+C:\Users\valdas\Desktop\Personal\DI\Dronas\RoombaDroneApp\RoombaDroneApp\main.cpp(381,55): warning :       |                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~
+C:\Users\valdas\Desktop\Personal\DI\Dronas\RoombaDroneApp\RoombaDroneApp\main.cpp(448,31): warning : conversion from ‘double’ to ‘int’ may change value [-Wfloat-conversion]
+C:\Users\valdas\Desktop\Personal\DI\Dronas\RoombaDroneApp\RoombaDroneApp\main.cpp(448,31): warning :   448 |    int leftSideMedian = median(leftSideOnlyObstacles, leftSideArrayPos);
+C:\Users\valdas\Desktop\Personal\DI\Dronas\RoombaDroneApp\RoombaDroneApp\main.cpp(448,31): warning :       |                         ~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\valdas\Desktop\Personal\DI\Dronas\RoombaDroneApp\RoombaDroneApp\main.cpp(449,32): warning : conversion from ‘double’ to ‘int’ may change value [-Wfloat-conversion]
+C:\Users\valdas\Desktop\Personal\DI\Dronas\RoombaDroneApp\RoombaDroneApp\main.cpp(449,32): warning :   449 |    int rightSideMedian = median(rightSideOnlyObstacles, rightSideArrayPos);
+C:\Users\valdas\Desktop\Personal\DI\Dronas\RoombaDroneApp\RoombaDroneApp\main.cpp(449,32): warning :       |                          ~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\valdas\Desktop\Personal\DI\Dronas\RoombaDroneApp\RoombaDroneApp\main.cpp(336,6): warning : variable ‘lastScanData’ set but not used [-Wunused-but-set-variable]
+C:\Users\valdas\Desktop\Personal\DI\Dronas\RoombaDroneApp\RoombaDroneApp\main.cpp(336,6): warning :   336 |  int lastScanData[360];
+C:\Users\valdas\Desktop\Personal\DI\Dronas\RoombaDroneApp\RoombaDroneApp\main.cpp(336,6): warning :       |      ^~~~~~~~~~~~
+C:\Users\valdas\Desktop\Personal\DI\Dronas\RoombaDroneApp\RoombaDroneApp\main.cpp(343,6): warning : variable ‘obstacleTooClose’ set but not used [-Wunused-but-set-variable]
+C:\Users\valdas\Desktop\Personal\DI\Dronas\RoombaDroneApp\RoombaDroneApp\main.cpp(343,6): warning :   343 |  int obstacleTooClose = 0;
+C:\Users\valdas\Desktop\Personal\DI\Dronas\RoombaDroneApp\RoombaDroneApp\main.cpp(343,6): warning :       |      ^~~~~~~~~~~~~~~~
   Linking objects
-/usr/bin/ld : error : /home/admin/projects/RoombaDroneApp/obj/ARM64/Debug/main.o: in function `main':
-C:\Users\valdas\Desktop\Personal\DI\Dronas\RoombaDroneApp\RoombaDroneApp\main.cpp(156): error : undefined reference to `wiringPiSetupSys'
-/usr/bin/ld : error : /home/admin/projects/RoombaDroneApp/obj/ARM64/Debug/main.o: in function `Port::TurnOn()':
-C:\Users\valdas\Desktop\Personal\DI\Dronas\RoombaDroneApp\RoombaDroneApp\main.cpp(35): error : undefined reference to `pinMode'
-/usr/bin/ld : error : /home/admin/projects/RoombaDroneApp/obj/ARM64/Debug/main.o: in function `Port::SetHigh(bool)':
-C:\Users\valdas\Desktop\Personal\DI\Dronas\RoombaDroneApp\RoombaDroneApp\main.cpp(47): error : undefined reference to `digitalWrite'
-/usr/bin/ld : error : /home/admin/projects/RoombaDroneApp/main.cpp:49: undefined reference to `digitalWrite'
-collect2 : error : ld returned 1 exit status
+  RoombaDroneApp.vcxproj -> C:\Users\valdas\Desktop\Personal\DI\Dronas\RoombaDroneApp\RoombaDroneApp\bin\ARM64\Debug\RoombaDroneApp.out

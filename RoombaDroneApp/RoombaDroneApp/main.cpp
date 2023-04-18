@@ -7,6 +7,10 @@
 #include "src/datetime.h"      // to have current time for logging
 #include <algorithm>           // to sort arrays
 
+// Raspberry PI prerequisites:
+// install WiringPi
+
+
 using namespace rp::standalone::rplidar;   // for RPLidar
 using namespace jed_utils;                 // for datetime
 using namespace std;
@@ -235,7 +239,7 @@ double median(int arr[], int size) {
 int main(void)
 {
 	const char*  comPath = "/dev/ttyUSB0"; // default Lidar communication port path
-	_u32         baudrate = 256000;        // default communication speed between Lidar and Raspberry Pi
+	_u32         baudrate = 115200;        // default communication speed between Lidar and Raspberry Pi
 	u_result     opResult;                 // operation result
 	bool         connectSuccess = false;
 	int          connectionTimeout = 0;

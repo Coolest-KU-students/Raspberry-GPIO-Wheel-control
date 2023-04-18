@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.33502.453
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{803FD0C6-D64E-4E16-9DC3-1DAEC859A3D2}") = "PicoSensors3", "PicoSensors3.vgdbproj", "{1B13761B-B77F-4C98-8B0D-16E493DFAFB6}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|VisualGDB = Debug|VisualGDB
+		MinSizeRel|VisualGDB = MinSizeRel|VisualGDB
+		Release|VisualGDB = Release|VisualGDB
+		RelWithDebInfo|VisualGDB = RelWithDebInfo|VisualGDB
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1B13761B-B77F-4C98-8B0D-16E493DFAFB6}.Debug|VisualGDB.ActiveCfg = Debug|VisualGDB
+		{1B13761B-B77F-4C98-8B0D-16E493DFAFB6}.Debug|VisualGDB.Build.0 = Debug|VisualGDB
+		{1B13761B-B77F-4C98-8B0D-16E493DFAFB6}.MinSizeRel|VisualGDB.ActiveCfg = MinSizeRel|VisualGDB
+		{1B13761B-B77F-4C98-8B0D-16E493DFAFB6}.MinSizeRel|VisualGDB.Build.0 = MinSizeRel|VisualGDB
+		{1B13761B-B77F-4C98-8B0D-16E493DFAFB6}.Release|VisualGDB.ActiveCfg = Release|VisualGDB
+		{1B13761B-B77F-4C98-8B0D-16E493DFAFB6}.Release|VisualGDB.Build.0 = Release|VisualGDB
+		{1B13761B-B77F-4C98-8B0D-16E493DFAFB6}.RelWithDebInfo|VisualGDB.ActiveCfg = RelWithDebInfo|VisualGDB
+		{1B13761B-B77F-4C98-8B0D-16E493DFAFB6}.RelWithDebInfo|VisualGDB.Build.0 = RelWithDebInfo|VisualGDB
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {F1E5BDAB-678B-49F3-BC79-2771FA0EFC5C}
+	EndGlobalSection
+EndGlobal

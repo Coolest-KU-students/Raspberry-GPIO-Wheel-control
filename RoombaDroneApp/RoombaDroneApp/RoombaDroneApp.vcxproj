@@ -46,6 +46,10 @@
   <ImportGroup Label="Shared" />
   <ImportGroup Label="PropertySheets" />
   <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">
+    <IncludePath>C:\Users\valdas\Desktop\Personal\DI\Dronas\RoombaDroneApp\RoombaDroneApp\include;$(IncludePath)</IncludePath>
+    <SourcePath>C:\Users\valdas\Desktop\Personal\DI\Dronas\RoombaDroneApp\RoombaDroneApp\src;$(SourcePath)</SourcePath>
+  </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">
     <Link>
       <LibraryDependencies>wiringPi</LibraryDependencies>
@@ -65,7 +69,6 @@
     </RemotePostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="main-copy.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="src\arch\linux\net_serial.cpp" />
     <ClCompile Include="src\arch\linux\net_socket.cpp" />
@@ -81,6 +84,7 @@
     <ClInclude Include="include\rplidar_driver.h" />
     <ClInclude Include="include\rplidar_protocol.h" />
     <ClInclude Include="include\rptypes.h" />
+    <ClInclude Include="include\wiringPi.h" />
     <ClInclude Include="src\arch\linux\arch_linux.h" />
     <ClInclude Include="src\arch\linux\net_serial.h" />
     <ClInclude Include="src\arch\linux\thread.hpp" />
@@ -101,7 +105,20 @@
     <ClInclude Include="src\sdkcommon.h" />
     <ClInclude Include="src\timespan.h" />
   </ItemGroup>
-  <ItemDefinitionGroup />
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>C:\Users\valdas\Desktop\Personal\DI\Dronas\RoombaDroneApp\RoombaDroneApp\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">
+    <ClCompile>
+      <AdditionalOptions>-pthread %(AdditionalOptions)</AdditionalOptions>
+    </ClCompile>
+    <Link>
+      <LibraryDependencies>wiringPi</LibraryDependencies>
+      <AdditionalOptions>-pthread %(AdditionalOptions)</AdditionalOptions>
+    </Link>
+  </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets" />
 </Project>

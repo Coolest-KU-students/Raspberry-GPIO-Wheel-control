@@ -17,7 +17,6 @@
     <ClCompile Include="src\arch\linux\timer.cpp">
       <Filter>src\arch\linux</Filter>
     </ClCompile>
-    <ClCompile Include="main-copy.cpp" />
     <ClCompile Include="src\datetime.cpp">
       <Filter>src</Filter>
     </ClCompile>
@@ -114,6 +113,9 @@
     </ClInclude>
     <ClInclude Include="src\timespan.h">
       <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="include\wiringPi.h">
+      <Filter>include</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

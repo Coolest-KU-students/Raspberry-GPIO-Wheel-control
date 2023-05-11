@@ -2,6 +2,7 @@ cmake_minimum_required(VERSION 3.12)
 include(${PICO_SDK_PATH}/pico_sdk_init.cmake)
 
 project(PicoSensors3 C CXX ASM)
+include(PicoSDKConfig.cmake)
 pico_sdk_init()
 
 set(CMAKE_C_STANDARD 11)
@@ -9,9 +10,9 @@ set(CMAKE_CXX_STANDARD 17)
 if (TARGET tinyusb_device)
     add_executable(hello_usb
             hello_usb.c
-            ../../../../../../AppData/Local/VisualGDB/PicoSDK/1.5.0-Package/src/rp2_common/hardware_adc/adc.c)
+            C:/Users/Lukas/AppData/Local/VisualGDB/PicoSDK/1.5.0-Package/src/rp2_common/hardware_adc/adc.c)
 
-target_include_directories(hello_usb PRIVATE ../../../../../../AppData/Local/VisualGDB/PicoSDK/1.5.0-Package/src/rp2_common/hardware_adc/include)
+target_include_directories(hello_usb PRIVATE C:/Users/Lukas/AppData/Local/VisualGDB/PicoSDK/1.5.0-Package/src/rp2_common/hardware_adc/include)
     # pull in common dependencies
     target_link_libraries(hello_usb pico_stdlib)
 

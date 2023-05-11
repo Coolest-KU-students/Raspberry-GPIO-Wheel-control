@@ -3,6 +3,7 @@
 #include <signal.h>
 
 #include <wiringPi.h>          // to control Raspberry Pi digital pins
+#include <wiringSerial.h>
 #include "include/rplidar.h"   // RPLidar standard SDK
 #include "src/datetime.h"      // to have current time for logging
 #include <algorithm>           // to sort arrays
@@ -22,6 +23,107 @@ using namespace std;
 #define	left2Pin	5
 #define	right1Pin	21
 #define	right2Pin	22
+#define SerialPort SERIAL_0
+
+class PicoData {
+public:
+	unsigned int IR_1;
+	unsigned int IR_2;
+	unsigned int IR_3;
+	float US_1;
+	float US_2;
+	static PicoData* LastData;
+
+	PicoData() {
+		IR_1 = 0;
+		IR_2 = 0;
+		IR_3 = 0;
+		US_1 = 0;
+		US_2 = 0;
+	}
+
+	PicoData(char* picoData) { 
+		int placement = 1;
+		char* accumulated = new char[0];
+		int size = 0;
+		for (int i = 0; i < sizeof(picoData); i++) {
+			char current = picoData[i];
+			if (current == ';') {
+				Assign(placement, accumulated);
+				placement++;
+				size = 0;
+			}
+			size++;
+			char* newArray = new char[size];
+			for (int j = 0; j < size - 1; j++) {
+				newArray[j] = accumulated[j];
+			}
+			newArray[size - 1] = current;
+			accumulated = newArray;
+		}
+	}
+
+	void Assign(int placement, char* value) {
+		if (placement == 1) {
+			IR_1 = CharToFloat(value);
+		}
+		if (placement == 2) {
+			US_1 = CharToInt(value);
+		}
+		if (placement == 3) {
+			IR_2 = CharToFloat(value);
+		}
+		if (placement == 4) {
+			US_2 = CharToInt(value);
+		}
+		if (placement == 5) {
+			IR_3 = CharToFloat(value);
+		}
+	}
+
+	int CharToInt(char* value) {
+		try {
+			return stoi(value);
+		}
+		catch (exception e) {
+			return 0;
+		}
+	}
+
+	float CharToFloat(char* value) {
+		return (float)atof(value);
+	}
+
+};
+
+ PicoData* PicoData::LastData = new PicoData();
+
+PicoData* ReadPicoData() {
+	//!open serial in main!
+	int size = 0;
+	char* returnable = new char[0];
+	while (Serial.available()) {
+		char next = Serial.read();
+		
+		if (next == '\n') {
+
+			PicoData* newData = new PicoData(returnable);
+			PicoData::LastData = newData;
+			return newData;
+		}
+		size++;
+		char* newCharArray = new char[size];
+		for (int i = 0; i < size - 1; i++) {
+			newCharArray[i] = returnable[i];
+		}
+		newCharArray[size-1] = next;
+		delete(returnable);
+		returnable = newCharArray;
+	}
+	return PicoData::LastData;
+}
+
+
 
 bool inputTextPrinted = false;
 

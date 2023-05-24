@@ -1,0 +1,10 @@
+﻿  Validating sources
+  Copying sources remotely to '192.168.87.157'
+  Validating architecture
+  Validating architecture
+C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Microsoft\VC\v170\Application Type\Linux\1.0\Linux.targets(203,5): warning : Current project architecture 'ARM' is incompatible with the remote system architecture 'ARM64' ('aarch64'). Please switch the project architecture to 'ARM64' in Configuration Manager. If you are cross-compiling you can ignore this warning.
+  Starting remote build
+  Linking objects
+/usr/bin/ld : error : /home/admin/projects/RoombaDroneApp/obj/ARM/Debug/thread.o: undefined reference to symbol 'pthread_cancel@@GLIBC_2.4'
+/usr/bin/ld : error : /lib/arm-linux-gnueabihf/libpthread.so.0: error adding symbols: DSO missing from command line
+collect2 : error : ld returned 1 exit status
